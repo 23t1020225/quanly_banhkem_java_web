@@ -1,0 +1,15 @@
+# NetBeans specific
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+*.class
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Optional: Tomcat specific if you have local config
+/target/

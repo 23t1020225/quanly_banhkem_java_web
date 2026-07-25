@@ -1,0 +1,174 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jul 5, 2026, 5:23:36 PM
+    Author     : tranv
+*/
+/* --- CSS CHO TRANG ĐĂNG NHẬP --- */
+
+/* Khung bọc form */
+.login-container {
+    max-width: 420px;
+    margin: 60px auto; /* Căn giữa màn hình */
+    padding: 30px;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif; /* Font cơ bản gọn gàng */
+}
+
+/* Tiêu đề chính */
+.login-container h2 {
+    text-align: center;
+    color: #a75a40; /* Màu nâu cam */
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+
+/* --- CSS CHO TABS ĐĂNG NHẬP / ĐĂNG KÝ --- */
+.tab-header {
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #eeeeee;
+    margin-bottom: 25px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #999999;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+    color: #a75a40; /* Màu nâu cam */
+    border-bottom: 3px solid #a75a40;
+}
+
+.tab-btn:hover {
+    color: #a75a40;
+}
+
+/* Phụ đề */
+.login-container .subtitle {
+    text-align: center;
+    color: #777777;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+/* Nhóm chọn Email / Số điện thoại */
+.radio-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 0 5px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Khoảng cách giữa nút tròn và chữ */
+    color: #777777;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+    accent-color: #007bff; /* Nút xanh khi tick */
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+/* Khung nhập liệu */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #cccccc;
+    border-radius: 3px; /* Bo góc cực nhẹ giống ảnh */
+    font-size: 14px;
+    color: #333333;
+    outline: none;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box; /* Đảm bảo input không bị tràn viền */
+}
+
+.input-group input::placeholder {
+    color: #999999;
+}
+
+.input-group input:focus {
+    border-color: #a75a40; /* Đổi màu viền khi click vào */
+}
+
+/* Dòng chữ reCAPTCHA */
+.recaptcha-text {
+    text-align: center;
+    font-size: 13px;
+    color: #999999;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.recaptcha-text a {
+    color: #a75a40; /* Chữ màu nâu */
+    text-decoration: none;
+}
+
+.recaptcha-text a:hover {
+    text-decoration: underline;
+}
+
+/* Nút Đăng nhập */
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background-color: #98513b; /* Nền màu nâu */
+    color: #ffffff;
+    border: none;
+    border-radius: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.btn-login:hover {
+    background-color: #7c412e; /* Đậm hơn khi di chuột qua */
+}
+
+/* Khu vực link phía dưới */
+.login-footer {
+    text-align: center;
+    font-size: 14px;
+    color: #777777;
+}
+
+.login-footer p {
+    margin-bottom: 12px;
+}
+
+.login-footer a.highlight-link {
+    color: #f26463; /* Màu hồng đỏ (coral) cho link */
+    text-decoration: none;
+    font-weight: 300; 
+    font-size: 2rem;
+}
+
+.login-footer a.highlight-link:hover {
+    text-decoration: underline;
+}
+

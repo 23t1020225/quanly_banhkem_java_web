@@ -1,0 +1,34 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jul 7, 2026, 10:16:59 PM
+    Author     : tranv
+*/
+.btn-add-cart {
+    background-color: #e58277; 
+    color: white; 
+    border: none; 
+    border-radius: 50%; 
+    width: 45px; 
+    height: 45px; 
+    font-size: 22px; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-left: auto;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+
+/* Hiệu ứng khi di chuột và khi click chuột vào nút */
+.btn-add-cart:hover {
+    background-color: #d46b60; /* Màu đậm hơn một chút */
+}
+
+.btn-add-cart:active {
+    transform: scale(0.9); /* Nút hơi lún xuống khi click */
+}
+
