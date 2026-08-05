@@ -56,7 +56,7 @@ public class CheckoutServlet extends HttpServlet {
                 session.removeAttribute("cart");
                 response.getWriter().println("<script>alert('Đặt hàng thành công!'); window.location.href='index';</script>");
             } else {
-                response.getWriter().println("<script>alert('Lỗi đặt hàng! Bạn kiểm tra lại Database nhé.'); window.history.back();</script>");
+                response.getWriter().println("<script>alert('Lỗi đặt hàng! Chi tiết: " + dao.lastError.replace("'", "\\'") + "'); window.history.back();</script>");
             }
         } else {
             response.sendRedirect("index");

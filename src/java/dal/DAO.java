@@ -127,11 +127,16 @@ public class DAO extends DBconnect {
         return null;
     }
 
+    public String lastError = "";
+
     // 1. Hàm lưu đơn hàng vào DB khi khách nhấn "Xác nhận đặt hàng"
     public boolean addOrder(model.Account account, model.Cart cart) {
         try {
             Connection conn = getcon();
-            if (conn == null) return false;
+            if (conn == null) {
+                lastError = "Connection is null";
+                return false;
+            }
             
             // 1. Thêm vào bảng Orders
             String sqlOrder = "INSERT INTO Orders (customerName, orderDate, totalMoney, status) VALUES (?, CURRENT_TIMESTAMP, ?, 'Pending')";
@@ -155,11 +160,15 @@ public class DAO extends DBconnect {
                     psDetail.setDouble(4, item.getProduct().getPrice());
                     psDetail.executeUpdate();
                 }
+            } else {
+                lastError = "No generated keys returned for Orders";
+                return false;
             }
             return true;
         } catch (Exception e) {
             System.out.println("❌ LỖI LƯU ĐƠN HÀNG VÀO CSDL:");
             e.printStackTrace();
+            lastError = e.toString();
             return false;
         }
     }
