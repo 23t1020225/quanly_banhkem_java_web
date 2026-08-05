@@ -1,0 +1,225 @@
+/* ==========================================================================
+   CSS RESPONSIVE CHO INDEX.JSP
+   ========================================================================== */
+
+/* Nút toggle menu mobile (ẩn mặc định trên Desktop) */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #9b6b55;
+    cursor: pointer;
+    padding: 8px;
+    line-height: 1;
+}
+
+/* ================================================================
+   BREAKPOINT 1: TABLET / LAPTOP NHỎ (max-width: 1024px)
+   ================================================================ */
+@media (max-width: 1024px) {
+    .container {
+        width: 95%;
+        padding: 0 15px;
+    }
+    
+    .product-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .product-img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .search-input-container {
+        width: 180px;
+    }
+}
+
+/* ================================================================
+   BREAKPOINT 2: MOBILE (max-width: 768px)
+   ================================================================ */
+@media (max-width: 768px) {
+    /* Header & Mobile Menu */
+    .header-wrapper {
+        flex-wrap: nowrap;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        margin-right: 15px;
+    }
+
+    .header-right {
+        display: flex;
+        flex-direction: row-reverse; /* Đưa hamburger ra ngoài cùng bên trái của nhóm right */
+        align-items: center;
+        gap: 10px;
+    }
+
+    .hotline-box, .search-box-wrapper {
+        display: none; /* Ẩn hotline và ô search trên mobile cho gọn */
+    }
+
+    /* Offcanvas Navigation Menu */
+    .navigation {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: white;
+        box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+        transition: 0.3s ease-in-out;
+        z-index: 10000;
+        padding-top: 60px;
+    }
+
+    .navigation.active {
+        left: 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        display: none; /* Có thể dùng JS để accordion, tạm ẩn hoặc hiện mờ */
+        transform: none;
+        padding-left: 15px;
+        margin-top: 10px;
+    }
+    
+    .nav-item-dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    /* Layout Content (Grip Layout) */
+    .grip-layout {
+        flex-direction: column;
+    }
+
+    .grip-left {
+        width: 100%;
+        margin-bottom: 20px;
+        border-right: none;
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 10px;
+    }
+
+    .category-list {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    
+    .category-list li {
+        padding: 0;
+        border-bottom: none;
+    }
+
+    .category-list li a {
+        padding: 8px 15px;
+        background: #f5ebe6;
+        border-radius: 20px;
+        display: inline-block;
+    }
+
+    .grip-right {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .product-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    /* Override các thẻ bị gắn inline style font-size to đùng trong file JSP */
+    .section-title {
+        font-size: 24px !important;
+        margin-bottom: 20px;
+    }
+
+    .product-info h4 {
+        font-size: 16px !important;
+    }
+
+    .product-info p {
+        font-size: 13px !important;
+    }
+
+    .product-info .price {
+        font-size: 18px !important;
+    }
+
+    .product-img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    /* Introduce Section */
+    .grip-introduce {
+        flex-direction: column;
+    }
+    .introduce-left, .introduce-right {
+        width: 100%;
+    }
+    
+    /* Footer Stats Overlay */
+    .footer-stats-overlay {
+        flex-direction: column;
+        gap: 20px;
+        background: rgba(0,0,0,0.6);
+        padding: 30px;
+    }
+
+    /* Sửa lỗi hiển thị Parallax trên iOS/Mobile (tránh bị zoom to hoặc giật lag) */
+    .parallax-footer {
+        background-attachment: scroll !important;
+    }
+}
+
+/* ================================================================
+   BREAKPOINT 3: MOBILE NHỎ (max-width: 480px)
+   ================================================================ */
+@media (max-width: 480px) {
+    .product-list {
+        grid-template-columns: 1fr; /* Mỗi dòng 1 sản phẩm cho dễ xem */
+    }
+
+    .product-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        padding: 15px;
+    }
+
+    .product-img {
+        width: 100px;
+        height: 100px;
+        margin: 0 15px 0 0;
+    }
+    
+    .btn-add-cart {
+        position: relative;
+        left: 0;
+        transform: none;
+        margin-top: 10px;
+    }
+    
+    .product-item:hover .btn-add-cart {
+        left: 0;
+    }
+}

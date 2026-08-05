@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="CSS/style.css"/>
         <link rel="stylesheet" href="CSS/function_addbuy.css"/>
+        <link rel="stylesheet" href="reponsive/reponsive.css"/>
     </head>
     <body>
 
@@ -48,6 +49,9 @@
                 </nav>
 
                 <div class="header-right">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                     <div class="hotline-box">
                         <div class="hotline-icon">
                             <i class="fa-solid fa-phone-volume"></i>
@@ -293,5 +297,22 @@
                 </div>
             </div>
         </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileBtn = document.getElementById('mobile-menu-btn');
+                const navigation = document.querySelector('.navigation');
+                if(mobileBtn && navigation) {
+                    mobileBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        navigation.classList.toggle('active');
+                    });
+                    document.addEventListener('click', function(e) {
+                        if(!navigation.contains(e.target) && !mobileBtn.contains(e.target)) {
+                            navigation.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        </script>
 </body>
 </html>

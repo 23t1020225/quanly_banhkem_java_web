@@ -63,6 +63,12 @@ public class CartServlet extends HttpServlet {
         
         session.setAttribute("cart", cart);
         
+        if ("true".equals(request.getParameter("ajax"))) {
+            response.setContentType("text/plain");
+            response.getWriter().write(String.valueOf(cart.getTotalQuantity()));
+            return;
+        }
+        
         // Neu action = add tu index thi redirect ve trang chu
         if (action != null && action.equals("add") && request.getHeader("referer") != null && request.getHeader("referer").contains("index")) {
             response.sendRedirect("index");

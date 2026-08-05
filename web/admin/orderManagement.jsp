@@ -23,6 +23,9 @@
                     <a href="orderManagement" class="active">
                         <i class="fa-solid fa-clipboard-list"></i> Quản lý Đơn hàng
                     </a>
+                    <a href="productManagement">
+                        <i class="fa-solid fa-cake-candles"></i> Quản lý Bánh
+                    </a>
                     <a href="index">
                         <i class="fa-solid fa-store"></i> Về trang chủ
                     </a>

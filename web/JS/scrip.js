@@ -64,5 +64,36 @@
 
 
     function addToCart(id) {
-        window.location.href = "cart?action=add&id=" + id;
+        fetch("cart?action=add&id=" + id + "&ajax=true")
+            .then(response => response.text())
+            .then(quantity => {
+                // Update badge
+                const badge = document.getElementById("cart-badge");
+                if (badge) {
+                    badge.innerText = quantity;
+                }
+                showToast("Đã thêm vào giỏ hàng");
+            })
+            .catch(err => console.error("Error adding to cart:", err));
+    }
+
+    function showToast(message) {
+        let toastContainer = document.getElementById("toast-container");
+        if (!toastContainer) {
+            toastContainer = document.createElement("div");
+            toastContainer.id = "toast-container";
+            document.body.appendChild(toastContainer);
+        }
+
+        const toast = document.createElement("div");
+        toast.className = "toast-msg";
+        toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>${message}</span>`;
+        toastContainer.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.animation = "toastFadeOut 0.5s forwards";
+            setTimeout(() => {
+                toast.remove();
+            }, 500);
+        }, 2000);
     }

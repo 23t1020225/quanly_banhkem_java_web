@@ -134,7 +134,7 @@ public class DAO extends DBconnect {
             if (conn == null) return false;
             
             // 1. Thêm vào bảng Orders
-            String sqlOrder = "INSERT INTO Orders (customerName, orderDate, totalMoney, status) VALUES (?, GETDATE(), ?, N'Pending')";
+            String sqlOrder = "INSERT INTO Orders (customerName, orderDate, totalMoney, status) VALUES (?, CURRENT_TIMESTAMP, ?, 'Pending')";
             PreparedStatement psOrder = conn.prepareStatement(sqlOrder, Statement.RETURN_GENERATED_KEYS);
             psOrder.setString(1, account.getUsername());
             psOrder.setDouble(2, cart.getTotalMoney());
@@ -360,7 +360,7 @@ public class DAO extends DBconnect {
 
     // [ADMIN] Tính tổng doanh thu (chỉ tính đơn Done)
     public double getTotalRevenue() {
-        String sql = "SELECT ISNULL(SUM(totalMoney), 0) FROM Orders WHERE status = 'Done'";
+        String sql = "SELECT COALESCE(SUM(totalMoney), 0) FROM Orders WHERE status = 'Done'";
         try {
             Connection conn = getcon();
             if (conn != null) {
@@ -370,5 +370,28 @@ public class DAO extends DBconnect {
             }
         } catch (Exception e) { e.printStackTrace(); }
         return 0;
+    }
+
+    // [ADMIN] Thêm sản phẩm mới
+    public boolean insertProduct(String name, double price, String image, String description, int categoryId) {
+        String sql = "INSERT INTO Products (ProductName, Price, ImageURL, Description, CategoryID) VALUES (?, ?, ?, ?, ?)";
+        try {
+            Connection conn = getcon();
+            if (conn != null) {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, name);
+                ps.setDouble(2, price);
+                ps.setString(3, image);
+                ps.setString(4, description);
+                ps.setInt(5, categoryId);
+                
+                int result = ps.executeUpdate();
+                return result > 0;
+            }
+        } catch (Exception e) {
+            System.out.println("❌ LỖI THÊM SẢN PHẨM (ADMIN):");
+            e.printStackTrace();
+        }
+        return false;
     }
 }
