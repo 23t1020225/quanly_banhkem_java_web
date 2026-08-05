@@ -1,6 +1,6 @@
 # Bỏ qua các thư mục này khi build Docker (giúp tốc độ đẩy code lên cloud cực nhanh)
 build/
-dist/
+# dist/
 nbproject/private/
 .git/
 *.class

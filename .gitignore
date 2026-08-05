@@ -2,7 +2,7 @@
 nbproject/private/
 build/
 nbbuild/
-dist/
+# dist/ (Cho phép push thư mục dist lên GitHub)
 nbdist/
 .nb-gradle/
 *.class
