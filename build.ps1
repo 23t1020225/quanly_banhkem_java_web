@@ -31,6 +31,15 @@ if ($LASTEXITCODE -ne 0) {
     exit 1
 }
 
+Write-Host "Copying lib folder to web/WEB-INF/lib..."
+$targetLib = "web\WEB-INF\lib"
+if (!(Test-Path -Path $targetLib)) {
+    New-Item -ItemType Directory -Path $targetLib | Out-Null
+}
+if (Test-Path -Path "build\web\WEB-INF\lib") {
+    Copy-Item -Path "build\web\WEB-INF\lib\*.jar" -Destination $targetLib -Force
+}
+
 Write-Host "Packaging into WAR file..."
 if (!(Test-Path -Path "dist")) {
     New-Item -ItemType Directory -Path "dist" | Out-Null
