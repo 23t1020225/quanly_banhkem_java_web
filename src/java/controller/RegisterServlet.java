@@ -46,7 +46,7 @@ public class RegisterServlet extends HttpServlet {
             if (isRegistered) {
                 // Tạo session đăng nhập ngay lập tức (Role = 0)
                 HttpSession session = request.getSession();
-                Account newAcc = new Account(username, password, fullname, 0);
+                Account newAcc = new Account(username, password, fullname, 0, "Active");
                 session.setAttribute("account", newAcc);
                 
                 // Chuyển hướng về trang chủ

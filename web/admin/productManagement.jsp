@@ -105,6 +105,9 @@
                     <a href="productManagement" class="active">
                         <i class="fa-solid fa-cake-candles"></i> Quản lý Bánh
                     </a>
+                    <a href="accountManagement">
+                        <i class="fa-solid fa-users"></i> Quản lý Tài khoản
+                    </a>
                     <a href="index">
                         <i class="fa-solid fa-store"></i> Về trang chủ
                     </a>
@@ -194,6 +197,7 @@
                                         <th>Tên Bánh</th>
                                         <th>Giá</th>
                                         <th>Danh mục</th>
+                                        <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -213,6 +217,10 @@
                                                         <span class="admin-badge done" style="background-color: #f0e4df; color: #8d5d47;">${cat.name}</span>
                                                     </c:if>
                                                 </c:forEach>
+                                            </td>
+                                            <td>
+                                                <a href="editProduct?id=${p.id}" class="btn-action" style="background-color: #f57c00; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 13px; margin-right: 5px;"><i class="fa-solid fa-pen"></i> Sửa</a>
+                                                <a href="productManagement?action=delete&id=${p.id}" class="btn-action" style="background-color: #d32f2f; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 13px;" onclick="return confirm('Bạn có chắc chắn muốn xóa bánh này không?');"><i class="fa-solid fa-trash"></i> Xóa</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

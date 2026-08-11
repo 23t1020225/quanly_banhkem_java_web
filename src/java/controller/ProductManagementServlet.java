@@ -39,7 +39,26 @@ public class ProductManagementServlet extends HttpServlet {
             return;
         }
 
+        String action = request.getParameter("action");
         DAO dao = new DAO();
+        
+        if ("delete".equals(action)) {
+            String idStr = request.getParameter("id");
+            if (idStr != null) {
+                try {
+                    int id = Integer.parseInt(idStr);
+                    if (dao.deleteProduct(id)) {
+                        session.setAttribute("msgSuccess", "Đã xóa bánh thành công!");
+                    } else {
+                        session.setAttribute("msgError", "Không thể xóa bánh (có thể bánh này đã được mua).");
+                    }
+                } catch (Exception e) {
+                    session.setAttribute("msgError", "Lỗi ID không hợp lệ.");
+                }
+            }
+            response.sendRedirect("productManagement");
+            return;
+        }
         
         List<Product> products = dao.getAllProducts();
         List<Category> categories = dao.getAllCategories();

@@ -403,4 +403,109 @@ public class DAO extends DBconnect {
         }
         return false;
     }
+
+    // [ADMIN] Sửa sản phẩm
+    public boolean updateProduct(int id, String name, double price, String image, String description, int categoryId) {
+        String sql;
+        boolean hasNewImage = image != null && !image.isEmpty();
+        if (hasNewImage) {
+            sql = "UPDATE Products SET ProductName=?, Price=?, ImageURL=?, Description=?, CategoryID=? WHERE ProductID=?";
+        } else {
+            sql = "UPDATE Products SET ProductName=?, Price=?, Description=?, CategoryID=? WHERE ProductID=?";
+        }
+        
+        try {
+            Connection conn = getcon();
+            if (conn != null) {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, name);
+                ps.setDouble(2, price);
+                
+                if (hasNewImage) {
+                    ps.setString(3, image);
+                    ps.setString(4, description);
+                    ps.setInt(5, categoryId);
+                    ps.setInt(6, id);
+                } else {
+                    ps.setString(3, description);
+                    ps.setInt(4, categoryId);
+                    ps.setInt(5, id);
+                }
+                
+                int result = ps.executeUpdate();
+                return result > 0;
+            }
+        } catch (Exception e) {
+            System.out.println("❌ LỖI CẬP NHẬT SẢN PHẨM (ADMIN):");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // [ADMIN] Xóa sản phẩm
+    public boolean deleteProduct(int id) {
+        // Cần cẩn thận nếu product đã có trong OrderDetails, 
+        // ở đây ta sẽ dùng lệnh DELETE, nếu DB không cấu hình cascade có thể quăng lỗi.
+        String sql = "DELETE FROM Products WHERE ProductID = ?";
+        try {
+            Connection conn = getcon();
+            if (conn != null) {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, id);
+                int result = ps.executeUpdate();
+                return result > 0;
+            }
+        } catch (Exception e) {
+            System.out.println("❌ LỖI XÓA SẢN PHẨM (ADMIN):");
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // [ADMIN] Lấy tất cả tài khoản
+    public List<model.Account> getAllAccounts() {
+        List<model.Account> list = new ArrayList<>();
+        String sql = "SELECT * FROM Account ORDER BY role DESC, username ASC";
+        try {
+            Connection conn = getcon1(); // Kết nối vào admin db
+            if (conn != null) {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    model.Account a = new model.Account();
+                    a.setUsername(rs.getString("username"));
+                    a.setPassword(rs.getString("password"));
+                    a.setFullname(rs.getString("fullname"));
+                    a.setRole(rs.getInt("role"));
+                    String status = rs.getString("status");
+                    if (status == null) status = "Active";
+                    a.setStatus(status);
+                    list.add(a);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("❌ LỖI LẤY DANH SÁCH TÀI KHOẢN:");
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    // [ADMIN] Khóa / Mở khóa tài khoản
+    public boolean updateAccountStatus(String username, String status) {
+        String sql = "UPDATE Account SET status = ? WHERE username = ?";
+        try {
+            Connection conn = getcon1(); // Kết nối vào admin db
+            if (conn != null) {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, status);
+                ps.setString(2, username);
+                int result = ps.executeUpdate();
+                return result > 0;
+            }
+        } catch (Exception e) {
+            System.out.println("❌ LỖI CẬP NHẬT TRẠNG THÁI TÀI KHOẢN:");
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

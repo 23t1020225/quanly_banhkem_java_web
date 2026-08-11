@@ -11,15 +11,17 @@ package model;
 public class Account {
     private String username,password,fullname;
     private int role;
+    private String status;
 
     public Account() {
     }
 
-    public Account(String username, String password, String fullname, int role) {
+    public Account(String username, String password, String fullname, int role, String status) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;
         this.role = role;
+        this.status = status;
     }
 
     public String getFullname() {
@@ -54,4 +56,11 @@ public class Account {
         this.username = username;
     }
     
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

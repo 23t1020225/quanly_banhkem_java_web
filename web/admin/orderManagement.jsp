@@ -26,6 +26,9 @@
                     <a href="productManagement">
                         <i class="fa-solid fa-cake-candles"></i> Quản lý Bánh
                     </a>
+                    <a href="accountManagement">
+                        <i class="fa-solid fa-users"></i> Quản lý Tài khoản
+                    </a>
                     <a href="index">
                         <i class="fa-solid fa-store"></i> Về trang chủ
                     </a>

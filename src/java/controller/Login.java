@@ -82,6 +82,12 @@ public class Login extends HttpServlet {
     Account account = dao.checkLogin(user, pass); 
 
     if (account != null) {
+        if ("Locked".equals(account.getStatus())) {
+            request.setAttribute("error", "Tài khoản của bạn đã bị khóa. Vui lòng liên hệ Admin!");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
+        
         // === ĐĂNG NHẬP THÀNH CÔNG ===
         // Khởi tạo Session và lưu thông tin account vào (Đây chính là Cấp quyền)
         HttpSession session = request.getSession();

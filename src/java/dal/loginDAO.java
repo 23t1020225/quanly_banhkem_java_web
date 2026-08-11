@@ -35,6 +35,12 @@ public Account checkLogin(String user, String pass) {
             ac.setUsername(rs.getString("username"));
             ac.setFullname(rs.getString("fullname"));
             ac.setRole(rs.getInt("role"));
+            
+            // Lấy status từ DB, nếu null thì gán mặc định là Active
+            String status = rs.getString("status");
+            if (status == null) status = "Active";
+            ac.setStatus(status);
+            
             return ac;
         }
     } catch (Exception e) {
